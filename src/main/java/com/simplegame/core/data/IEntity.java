@@ -11,9 +11,9 @@ import java.io.Serializable;
 
 public interface IEntity extends Serializable {
 
-	public String getPirmaryKey();
+	public String getPirmaryKeyName();
 
-    public Object getPrimaryKey();
+    public Object getPrimaryKeyValue();
 
     /**
      * async save entity to database need copy

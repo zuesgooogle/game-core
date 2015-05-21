@@ -16,13 +16,13 @@ public interface IDbAccessor {
 
     public Object insert(String key, IEntity entity, Class<? extends IEntity> clazz);
     
-    public IEntity query(String key, Object entity, Class<? extends IEntity> clazz);
+    public IEntity query(String key, Object param, Class<? extends IEntity> clazz);
     
-    public List<IEntity> query(String key, String name, Object value, Class<? extends IEntity> clazz);
+    public List<IEntity> queryList(String key, Object param, Class<? extends IEntity> clazz);
     
-    public List<IEntity> query(String key, String name, Object value, IQueryFilter queryFilter, Class<? extends IEntity> clazz);
+    public List<IEntity> queryList(String key, Object param, IQueryFilter<IEntity> queryFilter, Class<? extends IEntity> clazz);
     
-    public int delete(String key, Object entity, Class<? extends IEntity> clazz);
+    public int delete(String key, Object param, Class<? extends IEntity> clazz);
     
     public int update(String key, IEntity entity );
 

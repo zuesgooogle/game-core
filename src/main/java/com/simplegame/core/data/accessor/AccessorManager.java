@@ -22,18 +22,18 @@ public class AccessorManager implements ApplicationContextAware {
     public AccessorManager() {
     }
 
-    public void setAccessors(Map<String, String> paramMap) {
-        this.accessors = paramMap;
+    public void setAccessors(Map<String, String> accessors) {
+        this.accessors = accessors;
     }
 
-    public void setDefaultDbType(String paramString) {
-        this.defaultAccessType = paramString;
+    public void setDefaultDbType(String defaultAccessType) {
+        this.defaultAccessType = defaultAccessType;
     }
 
-    public IDbAccessor getAccessor(String paramString) {
-        IDbAccessor localIDbAccessor = (IDbAccessor) this.applicationContext.getBean((String) this.accessors.get(paramString), IDbAccessor.class);
+    public IDbAccessor getAccessor(String accessType) {
+        IDbAccessor localIDbAccessor = (IDbAccessor) this.applicationContext.getBean(this.accessors.get(accessType), IDbAccessor.class);
         if (null == localIDbAccessor) {
-            throw new NullPointerException("no accessor type:" + paramString);
+            throw new NullPointerException("no accessor type:" + accessType);
         }
         return localIDbAccessor;
     }
@@ -42,7 +42,7 @@ public class AccessorManager implements ApplicationContextAware {
         return this.defaultAccessType;
     }
 
-    public void setApplicationContext(ApplicationContext paramApplicationContext) throws BeansException {
-        this.applicationContext = paramApplicationContext;
+    public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
+        this.applicationContext = applicationContext;
     }
 }

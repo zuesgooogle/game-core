@@ -20,7 +20,7 @@ public class StatementUtils {
 
 	public static final String DELETE_OP = "delete";
 
-	public static final String SELECT_SINGLE_OP = "selectSingle";
+	public static final String SELECT_ONE_OP = "selectOne";
 
 	public static final String RECORDS_COUNT_OP = "selectRecordsCount";
 
@@ -28,7 +28,7 @@ public class StatementUtils {
 
 	public static final String SELECT_ALL_OP = "selectAll";
 
-	public static final String SELECT_MULTI_OP = "selectMulti";
+	public static final String SELECT_LIST_OP = "selectList";
 
 	public static final String SELECT_SINGLE_BY_PARAMS_OP = "selectSingleByParams";
 
