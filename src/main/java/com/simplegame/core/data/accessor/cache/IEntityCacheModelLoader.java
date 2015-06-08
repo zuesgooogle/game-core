@@ -9,6 +9,6 @@ package com.simplegame.core.data.accessor.cache;
 
 public interface IEntityCacheModelLoader {
 
-	public void load(String key, IEntityCache entityCache);
+	public void load(String id, IEntityCache entityCache);
 	
 }
