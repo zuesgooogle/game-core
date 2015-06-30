@@ -14,7 +14,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.simplegame.core.SpringApplicationContext;
-import com.simplegame.core.sync.Sync;
+import com.simplegame.core.sync.annotation.Sync;
 
 /**
  * @author zeusgooogle

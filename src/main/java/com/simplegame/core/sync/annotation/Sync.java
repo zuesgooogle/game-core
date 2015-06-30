@@ -1,4 +1,4 @@
-package com.simplegame.core.sync;
+package com.simplegame.core.sync.annotation;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
