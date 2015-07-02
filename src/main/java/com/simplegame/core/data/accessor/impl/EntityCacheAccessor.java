@@ -63,7 +63,7 @@ public class EntityCacheAccessor implements IDbAccessor {
 
 	@Override
 	public List<IEntity> queryList(String key, Object param, IQueryFilter<IEntity> queryFilter, Class<? extends IEntity> clazz) {
-		IEntityCache entityCache = cacheManager.getRoleCache(key);
+		IEntityCache entityCache = cacheManager.getRoleCache((String)param);
 		EntityCacheContainer container = entityCache.getContainer(clazz);
 		
 		if(null != container) {
