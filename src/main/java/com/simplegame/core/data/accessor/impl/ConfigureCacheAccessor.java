@@ -40,7 +40,7 @@ public class ConfigureCacheAccessor implements IDbAccessor {
 		EntityCacheContainer container = entityCache.getContainer(clazz);
 
 		if (null != container) {
-			return container.load(key);
+			return container.load(param);
 		}
 		return null;
 	}
