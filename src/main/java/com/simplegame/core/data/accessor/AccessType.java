@@ -1,6 +1,7 @@
 package com.simplegame.core.data.accessor;
 
 
+
 /**
  * @author zeusgooogle
  * @date 2015-05-2 下午08:01:58
@@ -33,7 +34,7 @@ public class AccessType {
     public static String getConfigureCacheDbType() {
         return CONFIGURECACHE;
     }
-    
+
     /**
      * 可以配置，是否开启缓存，默认开启。
      * 
