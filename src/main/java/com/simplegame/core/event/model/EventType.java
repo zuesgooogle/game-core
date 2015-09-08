@@ -6,8 +6,8 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import com.simplegame.core.event.IEvent;
 import com.simplegame.core.event.IEventHandler;
@@ -22,7 +22,7 @@ import com.simplegame.core.event.IEventHandler;
  */
 public class EventType {
 
-	private Logger LOG = LoggerFactory.getLogger(getClass());
+	private Logger LOG = LogManager.getLogger(getClass());
 
 	private String eventType;
 

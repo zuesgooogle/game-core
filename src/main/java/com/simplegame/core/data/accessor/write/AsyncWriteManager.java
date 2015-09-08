@@ -9,9 +9,9 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import javax.annotation.PostConstruct;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.mybatis.spring.SqlSessionTemplate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.simplegame.core.SpringApplicationContext;
 import com.simplegame.core.sync.annotation.Sync;
@@ -22,7 +22,7 @@ import com.simplegame.core.sync.annotation.Sync;
  */
 public class AsyncWriteManager {
 
-	private static final Logger LOG = LoggerFactory.getLogger(AsyncWriteManager.class);
+    private Logger LOG = LogManager.getLogger(getClass());
 
 	private static final String COMPONENT_NAME = "__async_write";
 
@@ -104,7 +104,7 @@ public class AsyncWriteManager {
 						LOG.error("AsyncWriteManager[{}]:cleaned {},remain {}", name, i, dataContainers.size());
 					}
 				} catch (Exception localException) {
-					AsyncWriteManager.LOG.error("", localException);
+					LOG.error("", localException);
 				}
 			}
 		}, "AsyncWriteManager[" + this.name + "]-Cleaner");
@@ -261,7 +261,7 @@ public class AsyncWriteManager {
 
 					sync(asyncWriteDataContainer);
 				} catch (Exception e) {
-					AsyncWriteManager.LOG.error("", e);
+					LOG.error("", e);
 				} finally {
 					this.writing = false;
 				}
