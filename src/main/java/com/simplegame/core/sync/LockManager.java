@@ -4,8 +4,9 @@ import java.util.Iterator;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 
 /**
  * @author zeusgooogle
@@ -13,7 +14,7 @@ import org.slf4j.LoggerFactory;
  */
 public class LockManager {
 
-    private static final Logger LOG = LoggerFactory.getLogger(LockManager.class);
+    private static final Logger LOG = LogManager.getLogger(LockManager.class);
 
     private ConcurrentMap<String, ConcurrentMap<String, Lock>> components = new ConcurrentHashMap<String, ConcurrentMap<String, Lock>>();
 
