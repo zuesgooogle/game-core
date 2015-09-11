@@ -9,6 +9,7 @@ import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
+import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
 import com.simplegame.core.SpringApplicationContext;
@@ -43,14 +44,14 @@ public class DefaultActionManager implements IActionManager {
 	}
 
 	private void analyzeClass(Class<?> clazz) {
-		ActionWorker actionWorker = clazz.getAnnotation(ActionWorker.class);
+		ActionWorker actionWorker = AnnotationUtils.findAnnotation(clazz, ActionWorker.class);
 		if (null != actionWorker) {
 			try {
 				
 				Method[] methods = clazz.getDeclaredMethods();
 
 				for (Method m : methods) {
-					ActionMapping commandMapping = m.getAnnotation(ActionMapping.class);
+					ActionMapping commandMapping = AnnotationUtils.findAnnotation(m, ActionMapping.class);
 					if (null != commandMapping) {
 						resolvers.put(commandMapping.mapping(), new DefaultActionResolver(m, ctx.getBean(clazz)));
 					}
