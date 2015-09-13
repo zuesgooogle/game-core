@@ -3,6 +3,9 @@ package com.simplegame.core.data.accessor.cache.manager;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.simplegame.core.data.accessor.cache.IEntityCache;
 import com.simplegame.core.data.accessor.cache.IEntityCacheLoader;
 import com.simplegame.core.data.accessor.exception.CacheException;
@@ -16,6 +19,8 @@ import com.simplegame.core.data.accessor.write.AsyncWriteManager;
  */
 
 public class CacheManager {
+    
+    private Logger LOG = LogManager.getLogger(getClass());
 
 	private ConcurrentMap<String, IEntityCache> caches = new ConcurrentHashMap<String, IEntityCache>();
 
@@ -23,7 +28,7 @@ public class CacheManager {
 
 	private boolean needClean = false;
 
-	private Long cleanPeriod = Long.valueOf(300000L);
+	private long cleanPeriod = 300000; //5 min
 
 	private IEntityCacheLoader entityCacheLoader;
 
@@ -49,7 +54,23 @@ public class CacheManager {
 		this.cleanPeriod = cleanPeriod;
 	}
 
-	public void setAsyncWriteManager(AsyncWriteManager asyncWriteManager) {
+	public long getCleanPeriod() {
+        return cleanPeriod;
+    }
+
+    public void setCleanPeriod(long cleanPeriod) {
+        this.cleanPeriod = cleanPeriod;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public boolean isNeedClean() {
+        return needClean;
+    }
+
+    public void setAsyncWriteManager(AsyncWriteManager asyncWriteManager) {
 		this.asyncWriteManager = asyncWriteManager;
 	}
 
@@ -80,6 +101,8 @@ public class CacheManager {
 	public IEntityCache getRoleCache(String identity) {
 		IEntityCache entityCache = (IEntityCache) this.caches.get(identity);
 		if (null == entityCache) {
+		    LOG.error("cache name: {}, can't matche data to identity: {}", name, identity);
+		    
 			throw new CacheException("can't  matched cache to identity: " + identity);
 		}
 		return entityCache;
