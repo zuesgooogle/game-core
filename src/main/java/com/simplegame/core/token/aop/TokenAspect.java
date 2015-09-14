@@ -4,10 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 
+import com.simplegame.core.message.Message;
 import com.simplegame.core.token.TokenManager;
 import com.simplegame.core.token.annotation.TokenCheck;
-
-import com.simplegame.protocol.message.Message;
 
 /**
  * @author zeusgooogle
