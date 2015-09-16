@@ -5,10 +5,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationContext;
 import org.springframework.core.annotation.AnnotationUtils;
 import org.springframework.stereotype.Component;
 
@@ -31,13 +31,12 @@ public class DefaultActionManager implements IActionManager {
 
 	private Map<String, IActionResolver> resolvers = new HashMap<String, IActionResolver>();
 
-	private ApplicationContext ctx;
+	@Resource
+	private SpringApplicationContext springApplicationContext;
 	
 	@PostConstruct
 	public void init() {
-		ctx = SpringApplicationContext.getApplicationContext();
-
-		Map<String, Object> workers = ctx.getBeansWithAnnotation(ActionWorker.class);
+		Map<String, Object> workers = springApplicationContext.getBeansWithAnnotation(ActionWorker.class);
 		for (Object clazz : workers.values()) {
 			analyzeClass( clazz.getClass() );
 		}
@@ -53,7 +52,7 @@ public class DefaultActionManager implements IActionManager {
 				for (Method m : methods) {
 					ActionMapping commandMapping = AnnotationUtils.findAnnotation(m, ActionMapping.class);
 					if (null != commandMapping) {
-						resolvers.put(commandMapping.mapping(), new DefaultActionResolver(m, ctx.getBean(clazz)));
+						resolvers.put(commandMapping.mapping(), new DefaultActionResolver(m, springApplicationContext.getBean(clazz)));
 					}
 				}
 			} catch (Exception e) {
