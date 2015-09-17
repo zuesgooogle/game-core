@@ -34,6 +34,8 @@ public class Message {
         this.ip = message.getIp();
 
         this.route = message.getRoute();
+        this.userId = message.getUserId();
+        this.sessionId = message.getSessionId();
     }
 
     public Message(String command, Object data, FromType from, DestType dest, String roleId) {
