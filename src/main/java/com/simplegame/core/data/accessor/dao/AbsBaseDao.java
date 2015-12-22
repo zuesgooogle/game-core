@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.simplegame.core.data.IEntity;
 import com.simplegame.core.data.accessor.AccessType;
 import com.simplegame.core.data.accessor.AccessorManager;
+import com.simplegame.core.data.accessor.GlobalIdentity;
 import com.simplegame.core.data.accessor.IDbAccessor;
 import com.simplegame.core.data.accessor.impl.MyBatisDatabaseAccessor;
 
@@ -52,7 +53,7 @@ public abstract class AbsBaseDao<T extends IEntity> implements IDaoContext, IPar
     
     @Override
     public List<T> getRecords(Map<String, Object> param) {
-		return null;
+		return getRecords(param, GlobalIdentity.get(), getAccessType());
     }
     
     @Override
